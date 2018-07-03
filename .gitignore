@@ -1,0 +1,13 @@
+# Project Files #
+target/
+.idea/
+web/node_modules/
+src/main/resources/static/build/
+
+# IDEA files #
+*.iml
+*.iws
+*.ipr
+.idea/
+
+

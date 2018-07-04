@@ -1,1 +1,2 @@
 # StreamForgeWeb
+CI

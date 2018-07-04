@@ -1,0 +1,11 @@
+language: java
+install:
+  - mvn clean install -Dmaven.javadoc.skip=true -B -V
+  - cd web
+  - npm install
+  - cd ..
+  - mvn package
+branches:
+  only:
+  - gh-pages
+  - /.*/

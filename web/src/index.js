@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = 'StreamForge';
+const title = 'StreamForge Test';
 
 ReactDOM.render(
     <div>{title}</div>,

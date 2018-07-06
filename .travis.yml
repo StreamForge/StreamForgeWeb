@@ -1,0 +1,10 @@
+language: java
+install:
+  - cd web
+  - npm install
+  - cd ..
+  - mvn package
+branches:
+  only:
+  - gh-pages
+  - /.*/

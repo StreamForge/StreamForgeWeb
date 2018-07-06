@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const title = 'StreamForge Test Title, traveller!';
+import StartHeader from './mainpage/startpageHeader.js'
 
 ReactDOM.render(
-    <div>{title}</div>,
+    <StartHeader />,
     document.getElementById('application')
 );

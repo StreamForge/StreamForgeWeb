@@ -11,7 +11,7 @@ class StartHeader extends React.Component {
             <section className="hero is-primary">
                 <div className="hero-body">
                     <div className="container">
-                        <h1 className="title">StreamForge</h1>
+                        <h1 className="title">StreamForge Header</h1>
                         <h2 className="subtitle">Forge</h2>
                     </div>
                 </div>

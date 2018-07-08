@@ -61,7 +61,7 @@
                         <goals>
                             <goal>exec</goal>
                         </goals>
-                        <phase>package</phase>
+                        <phase>initialize</phase>
                         <configuration>
                             <workingDirectory>web</workingDirectory>
                             <executable>npm</executable>

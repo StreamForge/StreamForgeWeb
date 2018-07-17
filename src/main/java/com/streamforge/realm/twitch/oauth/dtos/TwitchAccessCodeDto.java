@@ -1,7 +1,5 @@
 package com.streamforge.realm.twitch.oauth.dtos;
 
-import org.apache.http.client.utils.URIBuilder;
-
 public class TwitchAccessCodeDto {
     private String code;
     private String scope;
@@ -21,15 +19,18 @@ public class TwitchAccessCodeDto {
         return state;
     }
 
-    public void setCode(String code) {
+    public TwitchAccessCodeDto setCode(String code) {
         this.code = code;
+        return this;
     }
 
-    public void setScope(String scope) {
+    public TwitchAccessCodeDto setScope(String scope) {
         this.scope = scope;
+        return this;
     }
 
-    public void setState(String state) {
+    public TwitchAccessCodeDto setState(String state) {
         this.state = state;
+        return this;
     }
 }

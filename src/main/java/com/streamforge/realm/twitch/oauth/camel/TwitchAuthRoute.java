@@ -1,13 +1,14 @@
 package com.streamforge.realm.twitch.oauth.camel;
 
-import com.streamforge.realm.twitch.oauth.dtos.TwitchUserTokenDto;
 import com.streamforge.realm.twitch.oauth.transformer.TwitchAuthDataTransformer;
 import org.apache.camel.Exchange;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -30,6 +31,8 @@ public class TwitchAuthRoute extends RouteBuilder {
 
     private TwitchHttpQueryBuilder twitchHttpQueryBuilder;
 
+    private static final Logger LOG = LoggerFactory.getLogger(TwitchAuthRoute.class);
+
     @Autowired
     public TwitchAuthRoute(TwitchHttpQueryBuilder twitchHttpQueryBuilder) {
         this.twitchHttpQueryBuilder = twitchHttpQueryBuilder;
@@ -43,20 +46,13 @@ public class TwitchAuthRoute extends RouteBuilder {
             URIBuilder uriBuilder = new URIBuilder(Q_MARK + queryParams);
             mappedParams = uriBuilder.getQueryParams();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            LOG.error("Exception occurred on Twitch code HTTP query generation", e);
         }
         in.setBody(mappedParams);
     };
 
-    private final Consumer<Exchange> HTTP_POST_FOR_TOKENS = exchange -> {
-        Message in = exchange.getIn();
-        MultiValueMap<String, String> map = twitchHttpQueryBuilder.createTokenRequestURI();
-        map.add("code", exchange.getIn().getBody(String.class));
-        in.setBody(requestForToken(map));
-    };
-
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         rest(INTEGRATION_PATH)
                 .get(AUTHENTICATION_PATH).to("direct:twitch");
 
@@ -65,8 +61,9 @@ public class TwitchAuthRoute extends RouteBuilder {
                     .choice()
                         .when(body().method("isEmpty").contains(false))
                             .transform().method(TwitchAuthDataTransformer.class, TWITCH_ACCESS_CODE_DTO_METHOD_NAME)
-                            .to("direct:twitch-integration");
-
+                            .to("direct:twitch-integration")
+                        .otherwise()
+                            .log(LoggingLevel.ERROR, LOG, "Unable to make Twitch code request: exception occurred");
 
         from("direct:twitch-integration")
                 .choice()
@@ -79,8 +76,13 @@ public class TwitchAuthRoute extends RouteBuilder {
                         })
                         .choice()
                             .when(body().isNotNull())
-                                .unmarshal().json(JsonLibrary.Jackson, TwitchUserTokenDto.class);
-
+                                //todo REST API CALL HERE
+                                //the value could be retrieved as simple("${body}")
+                            .otherwise()
+                                .log(LoggingLevel.ERROR, LOG, "Unable to make Twitch auth request: bad request")
+                        .endChoice()
+                    .otherwise()
+                        .log(LoggingLevel.ERROR, LOG, "Unable to make Twitch auth request: parameters are not present");
     }
 
     private String requestForToken(MultiValueMap<String, String> params) {

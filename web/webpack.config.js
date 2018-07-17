@@ -2,7 +2,7 @@ const relPath = '/../src/main/resources/static/build';
 
 module.exports = {
     entry: [
-        './src/index.js'
+        './src/js/index.js'
     ],
     module: {
         rules: [
@@ -14,6 +14,19 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                            disable: true,
+                        },
+                    }
+                ],
             }
         ]
     },
@@ -22,7 +35,7 @@ module.exports = {
     },
     output: {
         path: __dirname + relPath,
-        publicPath: '/',
+        publicPath: '/build/',
         filename: 'bundle.js'
     },
     devServer: {

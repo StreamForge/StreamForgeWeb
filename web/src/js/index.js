@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StartHeader from './mainpage/startpageHeader.js'
+import StartPage from './mainpage/startPage'
 
 ReactDOM.render(
-    <StartHeader />,
+    <StartPage />,
     document.getElementById('application')
 );

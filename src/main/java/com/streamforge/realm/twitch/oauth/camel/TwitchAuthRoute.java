@@ -80,7 +80,7 @@ public class TwitchAuthRoute extends RouteBuilder {
                         })
                         .choice()
                             .when(body().isNotNull())
-                                .process(request -> request.getIn().setBody(saveTokenRequest(request.getIn().getBody().toString())))
+                                .process(exchange -> exchange.getIn().setBody(saveTokenRequest(exchange.getIn().getBody().toString())))
                                 .log(LoggingLevel.INFO, LOG, "${body}")
                             .otherwise()
                                 .log(LoggingLevel.ERROR, LOG, "Unable to make Twitch auth request: bad request")

@@ -19,7 +19,7 @@ public class Constants {
     public static final String STATE_PROPERTY = "state";
     public static final String CODE_PROPERTY = "code";
     public static final String GRANT_TYPE_VALUE = "authorization_code";
-    public static final String SCOPE_VALUE = "viewing_activity_read";
+    public static final String SCOPE_VALUE = "user_read";
 
     public static final String STATE = UUID.randomUUID().toString();
 }

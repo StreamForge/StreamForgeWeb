@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.streamforge.realm.Constants.*;
@@ -28,6 +29,9 @@ import static org.apache.camel.builder.PredicateBuilder.and;
 public class TwitchAuthRoute extends RouteBuilder {
     @Value("${streamforge.twitch.token-uri}")
     private String tokenURI;
+
+    @Value("${streamforge.services.savepath}")
+    private String serviceSavePath;
 
     private TwitchHttpQueryBuilder twitchHttpQueryBuilder;
 
@@ -76,8 +80,8 @@ public class TwitchAuthRoute extends RouteBuilder {
                         })
                         .choice()
                             .when(body().isNotNull())
-                                //todo REST API CALL HERE
-                                //the value could be retrieved as simple("${body}")
+                                .process(request -> request.getIn().setBody(saveTokenRequest(request.getIn().getBody().toString())))
+                                .log(LoggingLevel.INFO, LOG, "${body}")
                             .otherwise()
                                 .log(LoggingLevel.ERROR, LOG, "Unable to make Twitch auth request: bad request")
                         .endChoice()
@@ -93,6 +97,18 @@ public class TwitchAuthRoute extends RouteBuilder {
         ResponseEntity<String> response = restTemplate.exchange(tokenURI, HttpMethod.POST, entity, String.class);
         return (response.getStatusCode() == HttpStatus.OK)
                 ? response.getBody()
+                : null;
+    }
+
+    private String saveTokenRequest(String body) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+        // just an example, you can do whatever you want
+        ResponseEntity<String> response = restTemplate.exchange(serviceSavePath, HttpMethod.POST, entity, String.class);
+        return response.getStatusCode() == HttpStatus.OK
+                ? String.valueOf(Objects.requireNonNull(response.getHeaders().get("Authorization")).get(0))
                 : null;
     }
 }

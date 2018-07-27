@@ -63,8 +63,8 @@ public class TwitchAuthServiceImpl implements TwitchAuthService {
     private String requestForToken(MultiValueMap<String, String> params) {
         SimpleRequestWrapper<MultiValueMap<String, String>, String> wrapper = new SimpleRequestWrapper<>();
         wrapper.setBody(params)
-                .setUrl(tokenURI)
-                .setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+               .setUrl(tokenURI)
+               .setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         ResponseEntity<String> response = wrapper.exchange(HttpMethod.POST, String.class);
         return response.getStatusCode() == HttpStatus.OK ? response.getBody() : null;
     }
@@ -72,8 +72,8 @@ public class TwitchAuthServiceImpl implements TwitchAuthService {
     private String saveTokenRequest(String body) {
         SimpleRequestWrapper<String, String> wrapper = new SimpleRequestWrapper<>();
         wrapper.setBody(body)
-                .setUrl(serviceSavePath)
-                .setContentType(MediaType.APPLICATION_JSON);
+               .setUrl(serviceSavePath)
+               .setContentType(MediaType.APPLICATION_JSON);
         ResponseEntity<String> response = wrapper.exchange(HttpMethod.POST, String.class);
         return response.getStatusCode() == HttpStatus.OK
                 ? String.valueOf(Objects.requireNonNull(response.getHeaders().get("Authorization")).get(0))

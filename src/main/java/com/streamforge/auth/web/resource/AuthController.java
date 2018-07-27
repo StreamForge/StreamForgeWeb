@@ -21,7 +21,8 @@ public class AuthController {
     private final TwitchAuthService twitchAuthService;
 
     @Autowired
-    public AuthController(TwitchHttpQueryBuilder twitchHttpQueryBuilder, TwitchAuthService twitchAuthService) {
+    public AuthController(TwitchHttpQueryBuilder twitchHttpQueryBuilder,
+                          TwitchAuthService twitchAuthService) {
         this.twitchHttpQueryBuilder = twitchHttpQueryBuilder;
         this.twitchAuthService = twitchAuthService;
     }

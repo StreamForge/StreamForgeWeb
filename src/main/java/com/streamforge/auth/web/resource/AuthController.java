@@ -41,9 +41,7 @@ public class AuthController {
     @ResponseBody
     public String twitchCallback(@RequestParam("code") String code,
                                  @RequestParam("state") String state,
-                                 @RequestParam("scope") String scope)  {
+                                 @RequestParam("scope") String scope) {
         return twitchAuthService.processCallback(code, state);
     }
-
-
 }

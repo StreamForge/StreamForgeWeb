@@ -1,6 +1,7 @@
 package com.streamforge.realm.twitch.oauth.service.impl;
 
 import com.hp.gagawa.java.elements.Body;
+import com.hp.gagawa.java.elements.Script;
 import com.hp.gagawa.java.elements.Text;
 import com.streamforge.http.request.SimpleRequestWrapper;
 import com.streamforge.realm.twitch.oauth.builder.TwitchHttpQueryBuilder;
@@ -13,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
-import com.hp.gagawa.java.elements.Script;
 
 import java.util.Objects;
 
@@ -50,7 +50,7 @@ public class TwitchAuthServiceImpl implements TwitchAuthService {
         StringBuilder scriptBuilder = new StringBuilder();
         if (token == null || !token.matches(TOKEN_PATTERN)) {
             scriptBuilder.append(INNER_SCRIPT_TOKEN_ERROR);
-        } else if ((status != null && status.equals(STATE))) {
+        } else if ((status != null && !status.equals(STATE))) {
             scriptBuilder.append(INNER_SCRIPT_STATE_ERROR);
         } else {
             scriptBuilder.append(String.format(INNER_SCRIPT_STORAGE, token));

@@ -4,7 +4,7 @@ class Config {
 	}
 
 	static get AUTH_PATH(){
-		return "/auth";
+		return "/api/auth";
 	}
 }
 

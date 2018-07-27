@@ -1,0 +1,26 @@
+.sf-thin-button {
+    background: #ffffef;
+    color: #1d2120;
+    height: 35px;
+    width: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sf-thin-button p {
+    height: 25px;
+    width: auto;
+    margin: 8px 15px;
+    text-align: center;
+    font-family: Noto Sans, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    float: left;
+}
+
+.sf-thin-button img {
+    height: 25px;
+    width: 25px;
+    float: left;
+    margin: 5px 5px;
+}

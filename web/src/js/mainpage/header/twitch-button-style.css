@@ -1,0 +1,9 @@
+@import "../../fonts/css/open-sans.css";
+
+:local(.button) {
+    font-family: "Open Sans Condensed", sans-serif;
+    background: #65449B;
+    color: #ffffef;
+    float: right;
+    margin: 15px;
+}

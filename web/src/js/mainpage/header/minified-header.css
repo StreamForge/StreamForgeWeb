@@ -1,0 +1,15 @@
+@import url("../../fonts/css/roboto.css");
+
+.nav-min {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    background: #e3e3e3;
+    z-index: 1;
+}
+
+.auth-bar-min {
+    height: fit-content;
+    width: auto;
+    float: right;
+}

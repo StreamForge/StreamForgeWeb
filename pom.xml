@@ -32,54 +32,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Camel -->
+        <!-- HTML -->
 
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-boot-starter</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-swagger-java-starter</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-servlet-starter</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jackson-starter</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-servlet</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jetty</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-http4</artifactId>
-            <version>${camelVersion}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jackson</artifactId>
-            <version>${camelVersion}</version>
+            <groupId>com.hp.gagawa</groupId>
+            <artifactId>gagawa</artifactId>
+            <version>1.0.1</version>
         </dependency>
 
         <!-- Apache Components -->

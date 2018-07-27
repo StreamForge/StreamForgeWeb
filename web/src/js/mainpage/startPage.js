@@ -1,22 +1,32 @@
-import React from 'react';
-import StartHeader from './startpageHeader.js'
-import StartPromo from './startpagePromo.js'
+import React from "react";
+import $ from "jquery";
+import Progress from "react-progress-2";
 
-import 'bulma/css/bulma.css'
+import StartHeader from "./header/startpageHeader.js";
+import StartPromo from "./promo/startpagePromo.js";
+import StartContent from "./content/startpageContent";
+
+import favicon from "../../media/images/sword-icon-20.png";
 
 class StartPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+	constructor(props) {
+		super(props);
+	}
 
-    render() {
-        return (
-            <React.Fragment>
-                <StartHeader />
-                <StartPromo />
-            </React.Fragment>
-        );
-    }
+	componentDidMount() {
+		$("link[rel*='icon']").attr("href", favicon);
+	}
+
+	render() {
+		return (
+			<React.Fragment>
+				<Progress.Component />
+				<StartHeader />
+				<StartPromo />
+				<StartContent/>
+			</React.Fragment>
+		);
+	}
 }
 
 export default StartPage;

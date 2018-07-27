@@ -3,12 +3,13 @@ package com.streamforge.realm;
 import java.util.UUID;
 
 public class Constants {
-    public static final String INTEGRATION_PATH = "/integration";
-    public static final String AUTHENTICATION_PATH = "/authenticate";
+    public static final String SCRIPT_TYPE_JS = "text/javascript";
+    public static final String INNER_SCRIPT_REDIRECT = "window.location.replace('%s');";
+    public static final String INNER_SCRIPT_STORAGE = "localStorage.setItem('token', '%s');";
+    public static final String INNER_SCRIPT_STATE_ERROR = "localStorage.setItem('stateError', 'true');";
+    public static final String INNER_SCRIPT_TOKEN_ERROR = "localStorage.setItem('tokenError', 'true');";
 
-    public static final String TWITCH_ACCESS_CODE_DTO_METHOD_NAME = "transformToTwitchAccessCodeDto";
-
-    public static final String Q_MARK = "?";
+    public static final String BASE_URL = "http://localhost:7001/";
 
     public static final String CLIENT_ID_PROPERTY = "client_id";
     public static final String CLIENT_SECRET_PROPERTY = "client_secret";

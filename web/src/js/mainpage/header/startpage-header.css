@@ -1,0 +1,32 @@
+.nav {
+    height: auto;
+    width: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1;
+}
+
+.nav-logo {
+    height: 75px;
+    width: 400px;
+    filter: invert(100%);
+    background: url("../../../media/images/nav-logo.png") no-repeat;
+    background-size: 100% 100%;
+    margin: 35px 40px;
+    float: left;
+}
+
+.auth-bar {
+    height: 75px;
+    width: auto;
+    margin: 35px 40px 35px 0;
+    float: right;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

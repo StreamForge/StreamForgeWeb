@@ -9,7 +9,7 @@
     "build": "cd .. && mvn clean install",
     "watch-build": "webpack --watch --d",
     "eslint": "eslint --fix --ext .js .",
-    "mvn-build": "npm run eslint && webpack",
+    "mvn-build": "npm i --g --save-dev eslint && npm run eslint && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

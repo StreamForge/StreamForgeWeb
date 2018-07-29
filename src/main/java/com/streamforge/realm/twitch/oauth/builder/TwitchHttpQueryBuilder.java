@@ -1,8 +1,7 @@
-package com.streamforge.realm.twitch.oauth.camel;
+package com.streamforge.realm.twitch.oauth.builder;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -38,12 +37,13 @@ public class TwitchHttpQueryBuilder {
                 .build().toString();
     }
 
-    public MultiValueMap<String, String> createTokenRequestURI() {
+    public MultiValueMap<String, String> createTokenRequestURI(String code) {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(CLIENT_ID_PROPERTY, clientId);
         params.add(CLIENT_SECRET_PROPERTY, clientSecret);
         params.add(REDIRECT_URI_PROPERTY, redirectURI);
         params.add(GRANT_TYPE_PROPERTY, GRANT_TYPE_VALUE);
+        params.add(CODE_PROPERTY, code);
         return params;
     }
 }

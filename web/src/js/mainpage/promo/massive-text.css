@@ -1,0 +1,25 @@
+@import "../../fonts/css/open-sans.css";
+
+.wrapper {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 500;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: fit-content;
+    height: fit-content;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 15px;
+}
+
+.wrapper .letter {
+    display: inline-block;
+    line-height: 3em;
+    color: #ffffef;
+}
